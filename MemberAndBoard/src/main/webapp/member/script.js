@@ -12,7 +12,7 @@ var confirmId = 0;
 var confirmLicence = 0;
 
 function closingId(){
-	if(confirmIdForm.confirm.value == 1){
+	if(confirmIdForm.confirm.value === 1){
 		confirmId = 1;
 		window.open('','_self').close();
 	}
@@ -22,7 +22,7 @@ function closingId(){
 	}
 }
 function closingLicence(){
-	if(confirmLicenceForm.confirm.value == 1){
+	if(confirmLicenceForm.confirm.value === 1){
 		confirmLicence = 1;
 		window.open('','_self').close();
 	}

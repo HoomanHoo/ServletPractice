@@ -1,17 +1,19 @@
 <%@page import="bean.MabDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="textSet.jsp"%>
+<%@ include file="textSet.jsp"%>
 <script src="script.js"></script>
 <%
 	String id = request.getParameter("id");
 	
 	MabDBBean dao = MabDBBean.getInstance();
 	int result = dao.checkMultiple("id");
+	
+	out.println(id);
 %>
 <form method="post" name="confirmIdForm" >
 <% 
-	if(result == 1){
+	if(result == -1){
 %>
 	<table>
 		<tr>
