@@ -3,11 +3,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="textSet.jsp"%>
 <script src="script.js"></script>
-<%
+<%	
+	request.setCharacterEncoding("utf-8");
+
 	String name = request.getParameter("name");
 	String id = request.getParameter("id");
 	String passwd = request.getParameter("passwd");
-	String licence = request.getParameter("licence");
+	String license = request.getParameter("license");
 	String tel1 = request.getParameter("tel1");
 	String tel2 = request.getParameter("tel2");
 	String tel3 = request.getParameter("tel3");
@@ -35,7 +37,7 @@
 	MabDBBean dao = MabDBBean.getInstance();
 	int result = 0;
 	
-	result = dao.insertInfo(id, passwd, name, tel, email, licence);
+	result = dao.insertInfo(id, passwd, name, tel, email, license);
 	if(result == 1){
 	%>
 	<script type="text/javascript">

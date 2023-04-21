@@ -22,13 +22,26 @@ function closingId(){
 	}
 }
 function closingLicense(){
-	if(confirmLicenseForm.confirm.value === 1){
+	if(confirmLiceForm.confirm.value === 1){
 		confirmLicense = 1;
 		window.open('','_self').close();
 	}
 	else{
 		confirmLicense = 0;
 		window.open('','_self').close();
+	}
+}
+
+function loginCheck(){
+	if(!loginForm.id.value){
+		alert(idError);
+		loginForm.id.focus();
+		return false;
+	}
+	else if(!loginForm.passwd.value){
+		alert(passwdError);
+		loginForm.passwd.focus();
+		return false;
 	}
 }
 

@@ -9,9 +9,9 @@
 	MabDBBean dao = MabDBBean.getInstance();
 	int result = dao.checkMultipleLicence(license);
 %>
-<form method="post" name="confirmLicenceForm" >
+<form method="post" name="confirmLiceForm" >
 <% 
-	if(result == 1){
+	if(result == -1){
 %>
 	<table>
 		<tr>
