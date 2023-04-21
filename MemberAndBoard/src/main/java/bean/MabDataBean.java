@@ -6,7 +6,7 @@ public class MabDataBean {
 	private String id;
 	private String passwd;
 	private String name;
-	private String identify;
+	private String license;
 	private String tel;
 	private String email;
 	private Timestamp regDate;
@@ -37,11 +37,11 @@ public class MabDataBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getIdentify() {
-		return identify;
+	public String getLicense() {
+		return license;
 	}
-	public void setIdentify(String identify) {
-		this.identify = identify;
+	public void setLicense(String license) {
+		this.license = license;
 	}
 	public String getTel() {
 		return tel;

@@ -8,7 +8,7 @@
 	String strId = "ID";
 	String strPasswd = "PW";
 	String strName = "이름";
-	String strLicence = "약사면허번호";
+	String strLicense = "약사면허번호";
 	String strTel = "전화번호";
 	String strEmail = "이메일";
 	String strRegist = "가입 정보 입력";

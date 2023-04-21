@@ -4,10 +4,10 @@
     <%@ include file="textSet.jsp"%>
 <script src="script.js"></script>
 <%
-	String licence = request.getParameter("licence");
+	String license = request.getParameter("license");
 	
 	MabDBBean dao = MabDBBean.getInstance();
-	int result = dao.checkMultipleLicence("licence");
+	int result = dao.checkMultipleLicence(license);
 %>
 <form method="post" name="confirmLicenceForm" >
 <% 
@@ -20,7 +20,7 @@
 		<tr>
 			<th>
 				<input type="hidden" name="confirm" value="1">
-				<input type="button" value="<%=btnOk %>" onclick="closingIdentify()">
+				<input type="button" value="<%=btnOk %>" onclick="closingLicense()">
 			</th>
 		</tr>
 	</table>
@@ -35,7 +35,7 @@
 		<tr>
 			<th>
 				<input type="hidden" name="confirm" value="0">
-				<input type="button" value="<%=btnOk %>" onclick="closingIdentify()">
+				<input type="button" value="<%=btnOk %>" onclick="closingLicense()">
 			</th>
 		</tr>	
 	

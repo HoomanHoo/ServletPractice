@@ -37,10 +37,12 @@ public class MabDBBean {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				//ID 있음
 				result = -1;
 			}
 			else {
-				result = 1;
+				//ID없음
+				result = 0;
 			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +63,7 @@ public class MabDBBean {
 		return result;
 	}
 	
-	public int checkMultipleLicence(String licence) {
+	public int checkMultipleLicence(String license) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -69,15 +71,17 @@ public class MabDBBean {
 		
 		try {
 			con = getConnection();
-			String sql = "select identify from mab_member where licence=?";
+			String sql = "select license from mab_member where license=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, licence);
+			pstmt.setString(1, license);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				result = -1;
+				//면허 있음
+				result = 1;
 			}
 			else {
-				result = 1;
+				//면허 없음
+				result = -1;
 			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -98,21 +102,21 @@ public class MabDBBean {
 		return result;
 	}
 	
-	public int insertInfo(String id, String passwd, String name, String tel, String email, String licence) {
+	public int insertInfo(String id, String passwd, String name, String tel, String email, String license) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = getConnection();
-			String sql = "insert into mab_member (id, passwd, name, tel, email, licence) values( ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into mab_member (id, passwd, name, tel, email, license) values( ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, passwd);
 			pstmt.setString(3, name);
 			pstmt.setString(4, tel);
 			pstmt.setString(5, email);
-			pstmt.setString(6, licence);
+			pstmt.setString(6, license);
 			result = pstmt.executeUpdate();
 			
 			

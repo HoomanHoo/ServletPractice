@@ -29,10 +29,10 @@
 			</td>
 		</tr>
 		<tr>
-			<th><%=strLicence %></th>
+			<th><%=strLicense %></th>
 			<td>
-				<input type="text" name="licence" maxlength="15" style="width:80px">
-				<input type="button" name="multipleIdentifyCheck" value="<%=btnMultiple %>" onclick="multiIdentifyCheck()">
+				<input type="text" name="license" maxlength="15" style="width:80px">
+				<input type="button" name="multiplelicenseCheck" value="<%=btnMultiple %>" onclick="multiLicenseCheck()">
 			</td>
 		</tr>
 		<tr>

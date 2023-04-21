@@ -1,3 +1,4 @@
+<%@page import="bean.MabDataBean"%>
 <%@page import="bean.MabDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,17 +8,19 @@
 	String id = request.getParameter("id");
 	
 	MabDBBean dao = MabDBBean.getInstance();
-	int result = dao.checkMultiple("id");
-	
+	int result = dao.checkMultiple(id);
+	MabDataBean dto = new MabDataBean();
 	out.println(id);
+	out.println(result);
+	out.println(dto.getId());
 %>
 <form method="post" name="confirmIdForm" >
 <% 
-	if(result == -1){
+	if(result == 0){
 %>
 	<table>
 		<tr>
-			<th>사용 가능한 ID입니다아</th>
+			<th>사용 가능한 ID입니다</th>
 		</tr>
 		<tr>
 			<th>
