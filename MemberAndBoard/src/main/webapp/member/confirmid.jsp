@@ -17,7 +17,7 @@
 %>
 	<table>
 		<tr>
-			<th>사용 가능한 ID입니다</th>
+			<th>사용 가능한 ID입니다아</th>
 		</tr>
 		<tr>
 			<th>
