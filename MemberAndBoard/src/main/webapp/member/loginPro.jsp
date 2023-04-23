@@ -13,6 +13,26 @@
 	
 	if(result == 1){
 		//id 비번 일치
+		session.setAttribute("id", id);
+		session.setAttribute("passwd", passwd);
+	%>
+		<script type="text/javascript">
+		alert(loginSuccessMsg);
 		
+		</script>
+		<meta http-equiv="refresh" content="0; url='mainPage.jsp'">
+	<%
+
+	}
+	else{
+		//id 비번 불일치
+		%>
+		<script type="text/javascript">
+		alert("아이디 비밀번호가 다릅니다");
+		
+		</script>
+		<meta http-equiv="refresh" content="0; url='loginPage.jsp'">
+		<%
+	
 	}
 %>

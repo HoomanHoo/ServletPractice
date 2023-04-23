@@ -8,6 +8,8 @@ let emailError = "이메일을 입력하세요";
 let idKrError = "아이디는 알파벳과 숫자로 조합해야 합니다";
 let passwdKrError = "비밀번호는 알파벳과 숫자로 조합해야 합니다"
 let confirmError = "중복확인을 해주세요";
+let invalidUserError = "회원만 이용할 수 있습니다";
+let loginSuccessMsg = "로그인 되었습니다";
 var confirmId = 0;
 var confirmLicense = 0;
 
@@ -47,55 +49,55 @@ function loginCheck(){
 
 function infoCheck(){
 	
-	var idValue = loginForm.id.value;
+	var idValue = registForm.id.value;
 	var idSearch = idValue.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);
-	var passwdValue = loginForm.passwd.value;
+	var passwdValue = registForm.passwd.value;
 	var passwdSearch = passwdValue.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);
 	
 	if (idSearch != -1){
 		alert(idKrError);
-		loginForm.id.focus();
+		registForm.id.focus();
 		return false;
 	}
 	if(passwdSearch != -1){
 		alert(passwdKrError);
-		loginForm.passwd.focus();
+		registForm.passwd.focus();
 		return false;
 	}
-	if(!loginForm.name.value){
+	if(!registForm.name.value){
 		alert(nameError);
-		loginForm.name.focus();
+		registForm.name.focus();
 		return false;
 	}
 	
-	if(!loginForm.id.value){
+	if(!registForm.id.value){
 		alert(idError);
-		loginForm.id.focus();
+		registForm.id.focus();
 		return false;
 	}
-	else if(!loginForm.passwd.value){
+	else if(!registForm.passwd.value){
 		alert(passwdError);
-		loginForm.passwd.focus();
+		registForm.passwd.focus();
 		return false;
 	}
-	else if(!(loginForm.passwd.value === loginForm.repasswd.value)){
+	else if(!(registForm.passwd.value === registForm.repasswd.value)){
 		alert(notEqualPasswd);
-		loginForm.passwd.focus();
+		registForm.passwd.focus();
 		return false;
 	}
-	else if(!loginForm.license.value){
+	else if(!registForm.license.value){
 		alert(licenseError);
-		loginForm.license.focus();
+		registForm.license.focus();
 		return false;
 	}
-	else if(!loginForm.tel1.value || !loginForm.tel2.value || !loginForm.tel3.value){
+	else if(!registForm.tel1.value || !registForm.tel2.value || !registForm.tel3.value){
 		alert(telError);
-		loginForm.tel1.focus();
+		registForm.tel1.focus();
 		return false;
 	}
-	else if(!loginForm.email1.value){
+	else if(!registForm.email1.value){
 		alert(emailError);
-		loginForm.email1.focus();
+		registForm.email1.focus();
 		return false;
 	}
 	else if(!confirmId === 1){
@@ -106,35 +108,35 @@ function infoCheck(){
 		alert(confirmLicenseError);
 		return false;
 	}
-	else if(loginForm.email2.value == -1){
-		if(loginForm.email1.value){
+	else if(registForm.email2.value == -1){
+		if(registForm.email1.value){
 			alert("이메일 서비스를 선택해주세요");
-			loginForm.email1.focus();
+			registForm.email1.focus();
 			return false;
 		}
 	}
 }
 
 function multiCheck(){
-	if(!loginForm.id.value){
+	if(!registForm.id.value){
 		alert(idError);
-		loginForm.id.focus();
+		registForm.id.focus();
 		return false;
 	}
 	else{
-		url="confirmid.jsp?id=" + loginForm.id.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
+		url="confirmid.jsp?id=" + registForm.id.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
 		open(url, "confirm", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
 	}
 }
 
 function multiLicenseCheck(){
-	if(!loginForm.license.value){
+	if(!registForm.license.value){
 		alert(licenseError);
-		loginForm.license.focus();
+		registForm.license.focus();
 		return false;
 	}
 	else{
-		url="confirmlicense.jsp?id=" + loginForm.id.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
+		url="confirmlicense.jsp?id=" + registForm.license.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
 		open(url, "confirmlicense", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
 	}
 }

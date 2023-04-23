@@ -3,7 +3,7 @@
 <%@ include file="textSet.jsp"%>
 <script src="script.js"></script>
 
-<form method="post" name="loginForm" action="registerPro.jsp" onsubmit="return infoCheck()">
+<form method="post" name="registForm" action="registerPro.jsp" onsubmit="return infoCheck()">
 	<table border="1">
 		<tr>
 			<th colspan="2" align="center"><%=strRegist %></th>
