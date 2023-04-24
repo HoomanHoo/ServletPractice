@@ -2,15 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="textSet.jsp"%>
-<script src="script.js"></script>
-<%
-	String license = request.getParameter("license");
-	
-	MabDBBean dao = MabDBBean.getInstance();
-	int result = dao.checkMultipleLicence(license);
-%>
+<script src="<%=project%>script.js"></script>
+
 <form method="post" name="confirmLiceForm" >
 <% 
+	int result = (Integer)request.getAttribute("result");
 	if(result == -1){
 %>
 	<table>

@@ -10,8 +10,15 @@ let passwdKrError = "비밀번호는 알파벳과 숫자로 조합해야 합니�
 let confirmError = "중복확인을 해주세요";
 let invalidUserError = "회원만 이용할 수 있습니다";
 let loginSuccessMsg = "로그인 되었습니다";
+let missMatchInfo = "아이디 비밀번호가 다릅니다";
+let changeSuccessInfo = "회원정보 변경이 성공하였습니다";
+let changeFailInfo = "회원정보 변겅이 실패했습니다\n잠시후 다시 시도해주세요";
 var confirmId = 0;
 var confirmLicense = 0;
+
+function back(){
+	history.back();
+}
 
 function closingId(){
 	if(confirmIdForm.confirm.value === 1){
@@ -124,7 +131,7 @@ function multiCheck(){
 		return false;
 	}
 	else{
-		url="confirmid.jsp?id=" + registForm.id.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
+		url="confirmid.net?id=" + registForm.id.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
 		open(url, "confirm", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
 	}
 }
@@ -136,7 +143,7 @@ function multiLicenseCheck(){
 		return false;
 	}
 	else{
-		url="confirmlicense.jsp?id=" + registForm.license.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
+		url="confirmlicense.net?id=" + registForm.license.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
 		open(url, "confirmlicense", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
 	}
 }

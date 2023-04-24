@@ -160,6 +160,44 @@ public class MabDBBean {
 				//아이디 비밀번호 불일치
 				result = -1;
 			}
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	public MabDataBean getInfo(String id) {
+		MabDataBean dto = new MabDataBean();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			String sql = "select id, passwd, name, tel, email, license from mab_member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto.setId(rs.getString("id"));
+				dto.setPasswd(rs.getString("passwd"));
+				dto.setName(rs.getString("name"));
+				dto.setTel(rs.getString("tel"));
+				dto.setEmail(rs.getString("email"));
+				dto.setLicense(rs.getString("license"));
+			}
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -170,6 +208,45 @@ public class MabDBBean {
 		} finally {
 			try {
 				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
+	public int updateInfo(String id, String passwd, String tel, String email) {
+		int result = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			String sql = "update mab_member set "
+					+ "    passwd = ?, "
+					+ "    tel = ?, "
+					+ "    email = ? "
+					+ "where id= ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, passwd);
+			pstmt.setString(2, tel);
+			pstmt.setString(3, email);
+			pstmt.setString(4, id);
+			result = pstmt.executeUpdate();
+			// 1 리턴시 성공
+			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
 				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 			} catch (SQLException e) {

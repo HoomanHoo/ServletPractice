@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String project = "/MemberAndBoard/member/";
 	String pageLogin = "로그인 페이지";
 	String pageRegister = "회원가입 페이지";
 
@@ -18,6 +19,10 @@
 	String btnLogin = "로그인";
 	String btnRegist = "가입";
 	String btnMultiple = "중복체크";
+	String btnModify = "정보수정";
+	String btnDelete = "회원탈퇴";
+	String btnBack = "뒤로가기";
+	String btnModifyApply = "수정";
 	
 
 

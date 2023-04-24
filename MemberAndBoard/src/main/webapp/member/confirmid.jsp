@@ -3,19 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="textSet.jsp"%>
-<script src="script.js"></script>
-<%
-	String id = request.getParameter("id");
-	
-	MabDBBean dao = MabDBBean.getInstance();
-	int result = dao.checkMultiple(id);
-	MabDataBean dto = new MabDataBean();
-	out.println(id);
-	out.println(result);
-	out.println(dto.getId());
-%>
+<script src="<%=project%>script.js"></script>
+
 <form method="post" name="confirmIdForm" >
 <% 
+	int result = (Integer)request.getAttribute("result");
 	if(result == 0){
 %>
 	<table>
