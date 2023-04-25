@@ -3,10 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="textSet.jsp"%>
 <script src="${project}script.js"></script>
+<jsp:include page="/member/pageTop.jsp"/>
 
 <c:if test="${result eq 1}">
 <form name="mainPageForm" >
-	<table>
+	<table style="width:60%; margin: auto;">
 		<tr>
 			<td>
 				<input type="button" value="마이 페이지" onclick="location='mypage.net'">
@@ -22,5 +23,5 @@
 	alert(invalidUserError);
 	
 	</script>
-	<meta http-equiv="refresh" content="1; url='loginpage.net'">
+	<meta http-equiv="refresh" content="0; url='loginpage.net'">
 </c:if>

@@ -3,6 +3,7 @@
 <%@ include file="textSet.jsp"%>
 <script src="${project}script.js"></script>
 <form method="post" action="loginpro.net" name="loginForm" onsubmit="return loginCheck()">
+<c:if test="${result eq 0 }">
 <table>
 	<tr>
 		<th colspan="2">${strLogin}</th>
@@ -22,4 +23,8 @@
 		</th>
 	</tr>
 </table>
+</c:if>
+<c:if test="${result eq 1 }">
+<c:redirect url="mainpage.net"/>
+</c:if>
 </form>

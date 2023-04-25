@@ -20,6 +20,7 @@
 <c:set var="btnOk" value="확인"/>
 <c:set var="btnCancel" value="취소"/>
 <c:set var="btnLogin" value="로그인"/>
+<c:set var="btnLogout" value="로그아웃"/>
 <c:set var="btnRegist" value="가입"/>
 <c:set var="btnMultiple" value="중복체크"/>
 <c:set var="btnModify" value="정보수정"/>
