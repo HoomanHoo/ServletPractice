@@ -15,6 +15,7 @@ public class ConfirmLicenseHandler implements CommandHandler {
 		
 		MabDBBean dao = MabDBBean.getInstance();
 		int result = dao.checkMultipleLicence(license);
+		
 		request.setAttribute("result", result);
 		
 		return "/member/confirmlicense.jsp";

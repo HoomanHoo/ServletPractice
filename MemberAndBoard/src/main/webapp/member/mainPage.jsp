@@ -2,13 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="textSet.jsp"%>
-<script src="<%=project%>script.js"></script>
-<%
-	int result = (Integer)request.getAttribute("result");
-	if(result == 1){
-		//로그인 상태 검증 성공
-%>
+<script src="${project}script.js"></script>
 
+<c:if test="${result eq 1}">
 <form name="mainPageForm" >
 	<table>
 		<tr>
@@ -20,17 +16,11 @@
 		</tr>
 	</table>
 </form>
-<%
-	}
-	else{
-		//로그인 상태 검증 실패
-		%>
-		<script type="text/javascript">
-		alert(invalidUserError);
-		
-		</script>
-		<meta http-equiv="refresh" content="1; url='loginpage.net'">
-		<%
-		
-	}
-%>
+</c:if>
+<c:if test="${result ne 1}">
+	<script type="text/javascript">
+	alert(invalidUserError);
+	
+	</script>
+	<meta http-equiv="refresh" content="1; url='loginpage.net'">
+</c:if>

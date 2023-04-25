@@ -7,36 +7,46 @@ let telError = "전화번호를 입력하세요";
 let emailError = "이메일을 입력하세요";
 let idKrError = "아이디는 알파벳과 숫자로 조합해야 합니다";
 let passwdKrError = "비밀번호는 알파벳과 숫자로 조합해야 합니다"
+let emailCheckError = "이메일 서비스를 선택해주세요";
+let emailFullInputError = "이메일은 xxxx@xxx.xxx의 형식으로 입력하세요";
+let emailChooseError = "이메일의 @ 앞까지만 입력하세요"
 let confirmError = "중복확인을 해주세요";
 let invalidUserError = "회원만 이용할 수 있습니다";
 let loginSuccessMsg = "로그인 되었습니다";
 let missMatchInfo = "아이디 비밀번호가 다릅니다";
 let changeSuccessInfo = "회원정보 변경이 성공하였습니다";
-let changeFailInfo = "회원정보 변겅이 실패했습니다\n잠시후 다시 시도해주세요";
-var confirmId = 0;
-var confirmLicense = 0;
+let changeFailInfo = "회원정보 변겅이 실패했습니다\n잠시후 다시 시도하세요";
+
 
 function back(){
 	history.back();
 }
 
+function checkedId(){
+	registForm.checkId.value = 1;
+	console.log("checked");
+}
+
+function checkedLicense(){
+	registForm.checkLicense.value = 1;
+	console.log("checked");
+}
+
 function closingId(){
-	if(confirmIdForm.confirm.value === 1){
-		confirmId = 1;
+	if(confirmIdForm.confirm.value == "1"){
+		opener.checkedId();
 		window.open('','_self').close();
 	}
 	else{
-		confirmId = 0;
 		window.open('','_self').close();
 	}
 }
 function closingLicense(){
-	if(confirmLiceForm.confirm.value === 1){
-		confirmLicense = 1;
+	if(confirmLiceForm.confirmLic.value == "1"){
+		opener.checkedLicense();
 		window.open('','_self').close();
 	}
 	else{
-		confirmLicense = 0;
 		window.open('','_self').close();
 	}
 }
@@ -87,7 +97,7 @@ function infoCheck(){
 		registForm.passwd.focus();
 		return false;
 	}
-	else if(!(registForm.passwd.value === registForm.repasswd.value)){
+	else if(registForm.passwd.value != registForm.repasswd.value){
 		alert(notEqualPasswd);
 		registForm.passwd.focus();
 		return false;
@@ -107,22 +117,99 @@ function infoCheck(){
 		registForm.email1.focus();
 		return false;
 	}
-	else if(!confirmId === 1){
-		alert(confirmIdError);
+	else if(registForm.checkId.value != 1){
+		alert(confirmError);
 		return false;
 	}
-	else if(!confirmLicense === 1){
-		alert(confirmLicenseError);
+	else if(registForm.checkLicense.value != 1){
+		alert(confirmError);
 		return false;
 	}
 	else if(registForm.email2.value == -1){
 		if(registForm.email1.value){
-			alert("이메일 서비스를 선택해주세요");
+			console.log("emailInputError");
+			alert(emailCheckError);
 			registForm.email1.focus();
 			return false;
 		}
 	}
+	else if(registForm.email2.value != -1){
+		if(registForm.email2.value == 0 && registForm.email1.value.indexOf("@") == -1){
+			console.log("emailInputError");
+			alert(emailFullInputError);
+			registForm.email1.focus();
+			return false;
+		}
+		else if(registForm.email2.value != 0 && registForm.email1.value.indexOf("@") != -1){
+			console.log("emailInputError");
+			alert(emailChooseError);
+			return false;
+		}
+	}
 }
+
+function modifyCheck(){
+	var passwdValue = myInfo.passwd.value;
+	var passwdSearch = passwdValue.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);
+	
+	if(passwdSearch != -1){
+		alert(passwdKrError);
+		myInfo.passwd.focus();
+		return false;
+	}
+	else if(!myInfo.passwd.value){
+		alert(passwdError);
+		myInfo.passwd.focus();
+		
+		return false;
+	}
+	else if(myInfo.passwd.value != myInfo.repasswd.value){
+		alert(notEqualPasswd);
+		myInfo.passwd.focus();
+		return false;
+	}
+	else if(!myInfo.tel1.value || !myInfo.tel2.value || !myInfo.tel3.value){
+		alert(telError);
+		if(!myInfo.tel1.value){
+			myInfo.tel1.focus();
+		}
+		else if(!myInfo.tel2.value){
+			myInfo.tel2.focus();
+		}
+		else if(!myInfo.tel3.value){
+			myInfo.tel3.focus();
+		}
+		return false;
+	}
+	else if(!myInfo.email1.value){
+		alert(emailError);
+		myInfo.email1.focus();
+		return false;
+	}
+	else if(myInfo.email2.value == "-1"){
+		console.log("modifying");
+		console.log("emailInputError");
+		alert(emailCheckError);
+		myInfo.email1.focus();
+		return false;
+	
+	}
+	else if(myInfo.email2.value != "-1"){
+		if(myInfo.email2.value == 0 && myInfo.email1.value.indexOf("@") == -1){
+			console.log("emailInputError");
+			alert(emailFullInputError);
+			myInfo.email1.focus();
+			return false;
+		}
+		else if(myInfo.email2.value != "0" && myInfo.email1.value.indexOf("@") != -1){
+			console.log("emailInputError");
+			alert(emailChooseError);
+			return false;
+		}
+	}
+	
+}
+
 
 function multiCheck(){
 	if(!registForm.id.value){
@@ -143,7 +230,7 @@ function multiLicenseCheck(){
 		return false;
 	}
 	else{
-		url="confirmlicense.net?id=" + registForm.license.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
+		url="confirmlicense.net?license=" + registForm.license.value; //get 방식으로 데이터를 보냄 (페이지?파라미터 이름=파라미터)
 		open(url, "confirmlicense", "scrollbar=no, statusbar=no, titlebar=no, menubar=no, width=400px, height=250px");
 	}
 }

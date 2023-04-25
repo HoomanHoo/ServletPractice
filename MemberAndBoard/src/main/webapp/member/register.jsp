@@ -1,42 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="textSet.jsp"%>
-<script src="<%=project%>script.js"></script>
+<script src="${project}script.js"></script>
 
 <form method="post" name="registForm" action="registerpro.net" onsubmit="return infoCheck()">
+<input type="hidden" name="checkId" value="0">
+<input type="hidden" name="checkLicense" value="0">
 	<table border="1">
 		<tr>
-			<th colspan="2" align="center"><%=strRegist %></th>
+			<th colspan="2" align="center">${strRegist}</th>
 		</tr>
 		<tr>
-			<th><%=strName %></th>
+			<th>${strName}</th>
 			<td>
 				<input type="text" name="name" maxlength="15" autofocus style="width:80px">
 			</td>
 		</tr>
 		<tr>
-			<th><%=strId %></th>
+			<th>${strId}</th>
 			<td>
 				<input type="text" name="id" maxlength="15" style="width:80px">
-				<input type="button" name="multipleCheck" value="<%=btnMultiple %>" onclick="multiCheck()">
+				<input type="button" name="multipleCheck" value="${btnMultiple}" onclick="multiCheck()">
 			</td>
 		</tr>
 		<tr>
-			<th><%=strPasswd %></th>
+			<th>${strPasswd}</th>
 			<td>
 				<input type="password" name="passwd" maxlength="30" style="width:100px" >
 				<input type="password" name="repasswd" maxlength="30" style="width:100px">
 			</td>
 		</tr>
 		<tr>
-			<th><%=strLicense %></th>
+			<th>${strLicense}</th>
 			<td>
 				<input type="text" name="license" maxlength="15" style="width:80px">
-				<input type="button" name="multiplelicenseCheck" value="<%=btnMultiple %>" onclick="multiLicenseCheck()">
+				<input type="button" name="multiplelicenseCheck" value="${btnMultiple}" onclick="multiLicenseCheck()">
 			</td>
 		</tr>
 		<tr>
-			<th><%=strTel %></th>
+			<th>${strTel}</th>
 			<td align="center">
 				<input type="text" name="tel1" maxlength="3" style="width:30px">
 				- <input type="text" name="tel2" maxlength="4" style="width:40px">
@@ -44,7 +46,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th><%=strEmail %></th>
+			<th>${strEmail}</th>
 			<td>
 				<input type="text" name="email1" maxlength="30" style="width:100px">
 				@ <select name="email2">
@@ -59,8 +61,8 @@
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="<%=btnRegist %>">
-				<input type="reset" value="<%=btnCancel %>">
+				<input type="submit" value="${btnRegist}">
+				<input type="reset" value="${btnCancel}">
 			</th>
 		</tr>
 	</table>

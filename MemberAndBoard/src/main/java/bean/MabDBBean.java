@@ -68,7 +68,7 @@ public class MabDBBean {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			con = getConnection();
 			String sql = "select license from mab_member where license=?";
@@ -78,10 +78,12 @@ public class MabDBBean {
 			if(rs.next()) {
 				//면허 있음
 				result = 1;
+				
 			}
 			else {
 				//면허 없음
 				result = -1;
+				
 			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -99,6 +101,7 @@ public class MabDBBean {
 				e.printStackTrace();
 			}
 		}
+		
 		return result;
 	}
 	

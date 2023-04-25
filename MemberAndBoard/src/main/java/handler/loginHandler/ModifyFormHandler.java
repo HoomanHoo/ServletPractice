@@ -13,6 +13,8 @@ public class ModifyFormHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String passwd = (String)session.getAttribute("passwd");

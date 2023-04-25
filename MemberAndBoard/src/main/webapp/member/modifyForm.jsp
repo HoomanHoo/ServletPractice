@@ -1,33 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ include file="textSet.jsp"%>
-<script src="<%=project%>script.js"></script>
-<%
-	int result = (Integer)request.getAttribute("result");
-	if(result == 1){
-		//로그인 정보 유지
-%>
-<form name="myInfo" method="post" action="modifypro.net">
+<script src="${project}script.js"></script>
+
+
+<c:if test="${result eq 1}">
+
+<form name="myInfo" method="post" action="modifypro.net" onsubmit="return modifyCheck()">
 	<table>
 		<tr>
-			<th><%=strName %></th>
-			<td><input type="text" value=${name } readonly></td>
+			<th>${strName}</th>
+			<td><input type="text" value="${name}" readonly></td>
 		</tr>
 		<tr>
-			<th><%=strId%></th>
-			<td><input type="text" value=${id } maxlength="15" style="width:80px" readonly></td>
+			<th>${strId}</th>
+			<td><input type="text" value="${id}" maxlength="15" style="width:80px" readonly></td>
 		</tr>
 		<tr>
-			<th><%=strPasswd %></th>
-			<td><input type="password" name="passwd" maxlength="30" style="width:100px"></td>
-			<td><input type="password" name="repasswd" maxlength="30" style="width:100px"></td>
+			<th>${strPasswd}</th>
+			<td>
+				<input type="password" name="passwd" maxlength="30" style="width:100px">
+				<input type="password" name="repasswd" maxlength="30" style="width:100px">
+			</td>
 		</tr>
 		<tr>
-			<th><%=strLicense %></th>
-			<td><input type="text" value=${license } maxlength="15" style="width:80px" readonly></td>
+			<th>${strLicense}</th>
+			<td><input type="text" value="${license}" maxlength="15" style="width:80px" readonly></td>
 		</tr>
 		<tr>
-			<th><%=strTel %></th>
+			<th>${strTel}</th>
 			<td>
 				<input type="text" name="tel1" maxlength="3" style="width:30px">
 				- <input type="text" name="tel2" maxlength="4" style="width:40px">
@@ -35,7 +36,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th><%=strEmail %></th>
+			<th>${strEmail}</th>
 			<td>
 				<input type="text" name="email1" maxlength="30" style="width:100px">
 				@ <select name="email2" >
@@ -50,24 +51,18 @@
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="<%=btnModifyApply %>" >
-				<input type="reset" value="<%=btnCancel %>" >
-				<input type="button" value="<%=btnBack %>" onclick="back()">
-	
+				<input type="submit" value="${btnModifyApply}" >
+				<input type="reset" value="${btnCancel}" >
+				<input type="button" value="${btnBack}" onclick="back()">
+			</th>
+		</tr>
 	</table>
-
 </form>
-<%
-	}
-	else{
-		//로그인 상태 검증 실패
-		%>
-		<script type="text/javascript">
-		alert(invalidUserError);
-				
-		</script>
-		<meta http-equiv="refresh" content="1; url='loginpage.net'">
-		<%
-				
-		}
-%>
+</c:if>
+<c:if test="${result ne 1}">	
+	<script type="text/javascript">
+	alert(invalidUserError);
+			
+	</script>
+	<meta http-equiv="refresh" content="0; url='loginpage.net'">
+</c:if>
