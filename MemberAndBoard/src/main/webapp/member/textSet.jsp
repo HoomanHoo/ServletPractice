@@ -16,6 +16,7 @@
 <c:set var="strTel" value="전화번호"/>
 <c:set var="strEmail" value="이메일"/>
 <c:set var="strRegist" value="가입 정보 입력"/>
+<c:set var="strInputPw" value="회원탈퇴를 하시려면 비밀번호를 입력해주세요"/>
 	
 <c:set var="btnOk" value="확인"/>
 <c:set var="btnCancel" value="취소"/>

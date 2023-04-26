@@ -5,7 +5,7 @@
 <script src="${project}script.js"></script>
 
 <form method="post" name="confirmLiceForm" >
-	<c:if test="${result eq -1}">	
+	<c:if test="${result eq 0}">	
 		<table>
 			<tr>
 				<th>면허번호가 확인되었습니다</th>
@@ -18,7 +18,7 @@
 			</tr>
 		</table>
 	</c:if>
-	<c:if test="${result ne -1}">
+	<c:if test="${result eq 1}">
 		<table>
 			<tr>
 				<th>유효하지 않거나 이미 등록된 면허번호 입니다</th>

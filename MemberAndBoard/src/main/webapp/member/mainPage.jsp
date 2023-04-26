@@ -5,7 +5,7 @@
 <script src="${project}script.js"></script>
 <jsp:include page="/member/pageTop.jsp"/>
 
-<c:if test="${result eq 1}">
+
 <form name="mainPageForm" >
 	<table style="width:60%; margin: auto;">
 		<tr>
@@ -17,11 +17,3 @@
 		</tr>
 	</table>
 </form>
-</c:if>
-<c:if test="${result ne 1}">
-	<script type="text/javascript">
-	alert(invalidUserError);
-	
-	</script>
-	<meta http-equiv="refresh" content="0; url='loginpage.net'">
-</c:if>

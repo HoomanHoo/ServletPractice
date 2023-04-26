@@ -3,9 +3,6 @@
         <%@ include file="textSet.jsp"%>
 <script src="${project}script.js"></script>
 
-
-<c:if test="${result eq 1}">
-
 <form name="myInfo" method="post" action="modifypro.net" onsubmit="return modifyCheck()">
 	<table>
 		<tr>
@@ -58,11 +55,5 @@
 		</tr>
 	</table>
 </form>
-</c:if>
-<c:if test="${result ne 1}">	
-	<script type="text/javascript">
-	alert(invalidUserError);
-			
-	</script>
-	<meta http-equiv="refresh" content="0; url='loginpage.net'">
-</c:if>
+
+

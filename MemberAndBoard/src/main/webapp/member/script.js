@@ -33,6 +33,13 @@ function checkedLicense(){
 	console.log("checked");
 }
 
+function checkPasswd(){
+	if(!deleteForm.passwd.value){
+		alert(passwdError);
+		return false;
+	}
+}
+
 function closingId(){
 	if(confirmIdForm.confirm.value == "1"){
 		opener.checkedId();

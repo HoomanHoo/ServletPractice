@@ -12,18 +12,14 @@ public class LoginPageHandler implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		int result;
+		String url = null;
 		if(id == null) {
-			result = 0;
-			request.setAttribute("result", result);
+			url = "/member/loginPage.jsp";
 		}
 		else {
-			result = 1;
-			request.setAttribute("result", result);
+			url = "/member/mainPage.jsp";
 		}
-		
-		
-		return "/member/loginPage.jsp";
+		return url;
 	}
 
 }

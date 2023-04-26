@@ -76,13 +76,13 @@ public class MabDBBean {
 			pstmt.setString(1, license);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				//면허 있음
+				//db에 면허번호 있음
 				result = 1;
 				
 			}
 			else {
-				//면허 없음
-				result = -1;
+				//db에 면허번호 없음
+				result = 0;
 				
 			}
 		} catch (NamingException e) {
@@ -160,8 +160,8 @@ public class MabDBBean {
 				result = 1;
 			}
 			else {
-				//아이디 비밀번호 불일치
-				result = -1;
+				//아이디 비밀번호 불일치 or 비 로그인
+				result = -5;
 			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -242,6 +242,51 @@ public class MabDBBean {
 			result = pstmt.executeUpdate();
 			// 1 리턴시 성공
 			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int deleteMember(String id, String passwd) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			String sql = "select id, passwd from mab_member where id=? passwd=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, passwd);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = 1;
+				
+				pstmt.close();
+				sql = "delete from mab_member where id=? and passwd=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setString(2, passwd);
+				result = pstmt.executeUpdate();
+			}
+			else {
+				//비밀번호 틀림
+				result = -4;
+			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

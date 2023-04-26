@@ -5,37 +5,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.MabDBBean;
-import bean.MabDataBean;
 import handler.CommandHandler;
 
-public class ModifyFormHandler implements CommandHandler {
+public class DeleteProHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		request.setCharacterEncoding("utf-8");
-		
-		String url = null;
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		String passwd = (String)session.getAttribute("passwd");
+		String passwd = request.getParameter("passwd");
 		MabDBBean dao = MabDBBean.getInstance();
-		int result = dao.checkLogin(id, passwd);
-		MabDataBean dto = new MabDataBean();
-		dto = dao.getInfo(id);
-		id = dto.getId();
-		String name = dto.getName();
-		String license = dto.getLicense();
+		String url = null;
+		int result = dao.deleteMember(id, passwd);
+		
 		if(result == 1) {
 			request.setAttribute("result", result);
-			request.setAttribute("id", id);
-			request.setAttribute("name", name);
-			request.setAttribute("license", license);
-			url = "/member/modifyForm.jsp";
+			session.setAttribute("id", null);
+			session.setAttribute("passwd", null);
+			url = "/member/deletePro.jsp";
+			
 		}
-		else {
-			request.setAttribute("result", result);
+		else if(result == 0){
 			url = "/member/errorPage.jsp";
+		}
+		else if(result == -1) {
+			request.setAttribute("result", result);
+			url = "/member/deletePro.jsp";
+			
 		}
 		
 		return url;

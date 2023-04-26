@@ -18,9 +18,15 @@ public class MainPageHandler implements CommandHandler {
 		MabDBBean dao = MabDBBean.getInstance();
 		int result = dao.checkLogin(id, passwd);
 		
+		String url = null;
 		request.setAttribute("result", result);
-		
-		return "/member/mainPage.jsp";
+		if(result == 1) {
+			url = "/member/mainPage.jsp";
+		}
+		else {
+			url="/member/loginPage.jsp";
+		}
+		return url;
 	}
 
 }
