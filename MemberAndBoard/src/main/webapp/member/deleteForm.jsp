@@ -13,7 +13,7 @@
 		<tr>
 			<td>
 				<input type="submit" value="${btnOk}">
-				<input type="button" value="${btnCancel}">
+				<input type="button" value="${btnCancel}" onclick="location='mypage.net'">
 			</td>
 		</tr>
 	</table>

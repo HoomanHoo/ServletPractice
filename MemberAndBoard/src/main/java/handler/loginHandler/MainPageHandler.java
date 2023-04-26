@@ -19,7 +19,7 @@ public class MainPageHandler implements CommandHandler {
 		int result = dao.checkLogin(id, passwd);
 		
 		String url = null;
-		request.setAttribute("result", result);
+		
 		if(result == 1) {
 			url = "/member/mainPage.jsp";
 		}

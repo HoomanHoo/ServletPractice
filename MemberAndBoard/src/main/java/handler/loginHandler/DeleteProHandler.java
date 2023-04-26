@@ -26,12 +26,13 @@ public class DeleteProHandler implements CommandHandler {
 			url = "/member/deletePro.jsp";
 			
 		}
-		else if(result == 0){
+		else if(result == -4){
+			request.setAttribute("result", result);
 			url = "/member/errorPage.jsp";
 		}
-		else if(result == -1) {
+		else if(result == 0) {
 			request.setAttribute("result", result);
-			url = "/member/deletePro.jsp";
+			url = "/member/errorPage.jsp";
 			
 		}
 		

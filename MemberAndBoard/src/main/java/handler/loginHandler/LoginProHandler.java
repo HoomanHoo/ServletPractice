@@ -12,6 +12,7 @@ public class LoginProHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		String url = null;
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
 		
@@ -21,10 +22,12 @@ public class LoginProHandler implements CommandHandler {
 		if(result == 1) {
 			session.setAttribute("id", id);
 			session.setAttribute("passwd", passwd);
+			url = "/member/loginPro.jsp";
 		}
-		
-		request.setAttribute("result", result);
-		
-		return "/member/loginPro.jsp";
+		else {
+			request.setAttribute("result", result);
+			url = "/member/errorPage.jsp";
+		}
+		return url;
 	}
 }

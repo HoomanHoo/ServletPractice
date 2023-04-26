@@ -12,7 +12,7 @@ public class RegisterProHandler implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-
+		String url = null;
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
@@ -44,10 +44,15 @@ public class RegisterProHandler implements CommandHandler {
 		MabDBBean dao = MabDBBean.getInstance();
 		int result = 0;
 		result = dao.insertInfo(id, passwd, name, tel, email, license);
+		if(result == 1) {
+			url = "/member/registerPro.jsp";
+		}
+		else {
+			request.setAttribute("result", result);
+			url = "/member/errorPage.jsp";
+		}
 		
-		request.setAttribute("result", result);
-		
-		return "/member/registerPro.jsp";
+		return url;
 	}
 
 }

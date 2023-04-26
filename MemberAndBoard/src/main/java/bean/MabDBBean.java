@@ -77,13 +77,11 @@ public class MabDBBean {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				//db에 면허번호 있음
-				result = 1;
-				
+				result = -1;
 			}
 			else {
 				//db에 면허번호 없음
 				result = 0;
-				
 			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -101,7 +99,6 @@ public class MabDBBean {
 				e.printStackTrace();
 			}
 		}
-		
 		return result;
 	}
 	
@@ -121,8 +118,14 @@ public class MabDBBean {
 			pstmt.setString(5, email);
 			pstmt.setString(6, license);
 			result = pstmt.executeUpdate();
-			
-			
+			if(result == 0) {
+				//수행 실패
+				result = 0;
+			}
+			else {
+				//수행 성공
+				result = 1;
+			}
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -241,6 +244,12 @@ public class MabDBBean {
 			pstmt.setString(4, id);
 			result = pstmt.executeUpdate();
 			// 1 리턴시 성공
+			if(result == 1) {
+				result = 1;
+			}
+			else {
+				result = 0;
+			}
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -268,7 +277,7 @@ public class MabDBBean {
 		
 		try {
 			con = getConnection();
-			String sql = "select id, passwd from mab_member where id=? passwd=?";
+			String sql = "select id, passwd from mab_member where id=? and passwd=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, passwd);
@@ -282,6 +291,12 @@ public class MabDBBean {
 				pstmt.setString(1, id);
 				pstmt.setString(2, passwd);
 				result = pstmt.executeUpdate();
+				if(result == 1) {
+					result = 1;
+				}
+				else {
+					result = 0;
+				}
 			}
 			else {
 				//비밀번호 틀림

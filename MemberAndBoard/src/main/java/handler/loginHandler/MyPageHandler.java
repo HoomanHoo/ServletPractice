@@ -15,6 +15,7 @@ public class MyPageHandler implements CommandHandler {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		String url = null;
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String passwd = (String)session.getAttribute("passwd");
@@ -38,7 +39,7 @@ public class MyPageHandler implements CommandHandler {
 		
 		int result = dao.checkLogin(id, passwd);
 		if(result == 1) {
-			request.setAttribute("result", result);
+			
 			request.setAttribute("id", id);
 			request.setAttribute("passwd", passwd);
 			request.setAttribute("name", name);
@@ -48,9 +49,14 @@ public class MyPageHandler implements CommandHandler {
 			request.setAttribute("email1", email1);
 			request.setAttribute("email2", email2);
 			request.setAttribute("license", license);
+			url = "/member/myPage.jsp";
+		}
+		else {
+			request.setAttribute("result", result);
+			url = "/member/errorPage.jsp";
 		}
 		
-		return "/member/myPage.jsp";
+		return url;
 	}
 
 }

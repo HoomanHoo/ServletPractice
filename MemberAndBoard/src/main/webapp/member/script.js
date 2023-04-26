@@ -14,7 +14,7 @@ let confirmError = "중복확인을 해주세요";
 let invalidUserError = "회원만 이용할 수 있습니다";
 let loginSuccessMsg = "로그인 되었습니다";
 let missMatchInfo = "아이디 비밀번호가 다릅니다";
-let changeSuccessInfo = "회원정보 변경이 성공하였습니다";
+let changeSusseccInfo = "회원정보 변경이 성공하였습니다";
 let changeFailInfo = "회원정보 변겅이 실패했습니다\n잠시후 다시 시도하세요";
 let logoutAlert = "로그아웃 되었습니다";
 

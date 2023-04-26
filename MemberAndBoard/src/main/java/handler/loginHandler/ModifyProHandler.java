@@ -21,6 +21,7 @@ public class ModifyProHandler implements CommandHandler {
 		String email1 = request.getParameter("email1");
 		int email2 = Integer.parseInt(request.getParameter("email2"));
 		String email = null;
+		String url = null;
 		
 		String tel = tel1 + "-" + tel2 + "-" + tel3;
 		
@@ -44,13 +45,14 @@ public class ModifyProHandler implements CommandHandler {
 		int result = dao.updateInfo(id, passwd, tel, email);
 		
 		if(result == 1) {
-			request.setAttribute("result", result);
+			url = "/member/modifyPro.jsp";
 		}
 		else {
-			
+			request.setAttribute("result", result);
+			url = "/member/errorPage.jsp";
 		}
 		
-		return "/member/modifyPro.jsp";
+		return url;
 	}
 
 }
