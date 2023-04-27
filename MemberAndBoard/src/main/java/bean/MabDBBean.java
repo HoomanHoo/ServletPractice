@@ -184,8 +184,8 @@ public class MabDBBean {
 		}
 		return result;
 	}
-	public MabDataBean getInfo(String id) {
-		MabDataBean dto = new MabDataBean();
+	public MabDataLoginBean getInfo(String id) {
+		MabDataLoginBean dto = new MabDataLoginBean();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -319,6 +319,8 @@ public class MabDBBean {
 		}
 		return result;
 	}
+	
+	
 	
 	
 }//class

@@ -12,7 +12,7 @@
 			<td>
 				<input type="button" value="마이 페이지" onclick="location='mypage.net'">
 				<input type="button" value="재고수량관리" onclick="location='stockmanage.net'">
-				<input type="button" value="문의사항" onclick="location='qnaboard.net'">
+				<input type="button" value="문의사항" onclick="location='boardlist.net'">
 			</td>
 		</tr>
 	</table>

@@ -16,15 +16,16 @@ public class MainPageHandler implements CommandHandler {
 		String id = (String)session.getAttribute("id");
 		String passwd = (String)session.getAttribute("passwd");
 		MabDBBean dao = MabDBBean.getInstance();
-		int result = dao.checkLogin(id, passwd);
+		int checkId = dao.checkLogin(id, passwd);
 		
 		String url = null;
 		
-		if(result == 1) {
+		if(checkId == 1) {
 			url = "/member/mainPage.jsp";
 		}
 		else {
-			url="/member/loginPage.jsp";
+			request.setAttribute("checkId", checkId);
+			url="/member/errorPage.jsp";
 		}
 		return url;
 	}

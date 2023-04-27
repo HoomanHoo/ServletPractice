@@ -25,7 +25,7 @@ public class LoginProHandler implements CommandHandler {
 			url = "/member/loginPro.jsp";
 		}
 		else {
-			request.setAttribute("result", result);
+			request.setAttribute("loginResult", result);
 			url = "/member/errorPage.jsp";
 		}
 		return url;
