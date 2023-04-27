@@ -44,7 +44,16 @@ history.go(-2);
 
 
   <!-- result = -5 -> 비로그인 상태로 로그인 필요 페이지 접근  -->
-<c:if test="${result eq -5}">
+<c:if test="${checkId eq -5}">
+	<script type="text/javascript">
+	//<!--
+	alert(invalidUserError);
+	//-->
+	</script>
+	<meta http-equiv="refresh" content="0; url='loginpage.net'">
+</c:if>
+<!-- 로그인 시 아이디 비밀번호 불일치 -->
+<c:if test="${loginResult eq -5}">
 	<script type="text/javascript">
 	//<!--
 	alert(missMatchInfo);

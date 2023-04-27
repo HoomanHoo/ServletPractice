@@ -1,4 +1,4 @@
-<%@page import="bean.MabDataBean"%>
+<%@page import="bean.MabDataLoginBean"%>
 <%@page import="bean.MabDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

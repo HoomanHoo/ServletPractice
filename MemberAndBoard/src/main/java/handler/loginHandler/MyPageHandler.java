@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.MabDBBean;
-import bean.MabDataBean;
+import bean.MabDataLoginBean;
 import handler.CommandHandler;
 
 public class MyPageHandler implements CommandHandler {
@@ -20,26 +20,24 @@ public class MyPageHandler implements CommandHandler {
 		String id = (String)session.getAttribute("id");
 		String passwd = (String)session.getAttribute("passwd");
 		MabDBBean dao = MabDBBean.getInstance();
-		MabDataBean dto = new MabDataBean();
-		dto = dao.getInfo(id);
-		id = dto.getId();
-		passwd = dto.getPasswd();
-		String name = dto.getName();
-		String[] email = dto.getEmail().split("@");
-		String[] tel = dto.getTel().split("-");
-		String license = dto.getLicense();
-		
-		String tel1 = tel[0];
-		String tel2 = tel[1];
-		String tel3 = tel[2];
-		
-		String email1 = email[0];
-		String email2 = email[1];
-		
-		
-		int result = dao.checkLogin(id, passwd);
-		if(result == 1) {
+		int checkId = dao.checkLogin(id, passwd);
+		if(checkId == 1) {
+			MabDataLoginBean dto = new MabDataLoginBean();
+			dto = dao.getInfo(id);
+			id = dto.getId();
+			passwd = dto.getPasswd();
+			String name = dto.getName();
+			String[] email = dto.getEmail().split("@");
+			String[] tel = dto.getTel().split("-");
+			String license = dto.getLicense();
 			
+			String tel1 = tel[0];
+			String tel2 = tel[1];
+			String tel3 = tel[2];
+			
+			String email1 = email[0];
+			String email2 = email[1];
+
 			request.setAttribute("id", id);
 			request.setAttribute("passwd", passwd);
 			request.setAttribute("name", name);
@@ -52,7 +50,7 @@ public class MyPageHandler implements CommandHandler {
 			url = "/member/myPage.jsp";
 		}
 		else {
-			request.setAttribute("result", result);
+			request.setAttribute("checkId", checkId);
 			url = "/member/errorPage.jsp";
 		}
 		
