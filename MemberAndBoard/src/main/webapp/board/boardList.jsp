@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ include file="textSet.jsp"%>
@@ -16,6 +17,27 @@
 			<td>${strWriteDate}</td>
 			<td>${strReadCount}</td>
 		</tr>
+		<c:forEach var="dto" items="${dtos}">
+			<tr>
+			<td><c:out value="${dto.postNum}"/></td>
+			<td><c:out value="${dto.postSubject}"/></td>
+			<td><c:out value="${dto.postId}"/></td>
+			<td><c:out value="${dto.postWriteDate}"/></td>
+			<td><c:out value="${dto.postReadCount}"/></td>
+			</tr>
+		</c:forEach>
+		<%
+			ArrayList<Integer> arr = new ArrayList<Integer>();
+			arr.add(1);
+			arr.add(2);
+			arr.add(3);
+			request.setAttribute("arr", arr);
+		%>
+		<c:forEach var="value" items="${arr}">
+			<tr>
+			<td>${value}</td>
+			</tr>
+		</c:forEach>
 	</table>
 </form>
 

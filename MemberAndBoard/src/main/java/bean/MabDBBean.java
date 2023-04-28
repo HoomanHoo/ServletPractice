@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -320,6 +321,91 @@ public class MabDBBean {
 		return result;
 	}
 	
+	public int insertArticle(String id, String subject, String Content) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			String sql = "insert into mab_post values (?, mab_post_seq.nextval,?, sysdate, 0, 1, 1, 1, ?, 0) ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, subject);
+			pstmt.setString(3, Content);
+			System.out.println("insert id" + id);
+			System.out.println(id);
+			System.out.println("sql");
+			System.out.println(sql);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	public ArrayList<MabDataPostBean> getArticles() {
+		ArrayList<MabDataPostBean> dtos = new ArrayList<MabDataPostBean>();
+		MabDataPostBean dto = new MabDataPostBean();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; 
+		
+		try {
+			con = getConnection();
+			String sql = "select * from mab_post";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto.setPostId(rs.getString("post_id"));
+				dto.setPostNum(rs.getInt("post_num"));
+				dto.setPostSubject(rs.getString("post_subject"));
+				dto.setPostWriteDate(rs.getTimestamp("post_write_date"));
+				dto.setPostReadCount(rs.getInt("post_readcount")	);
+				dto.setPostRef(rs.getInt("post_ref"));
+				dto.setPostRefStep(rs.getInt("post_ref_step"));
+				dto.setPostRefLevel(rs.getInt("post_ref_level"));
+				dto.setPostContent(rs.getString("post_content"));
+				dto.setIp(rs.getString("ip"));
+				System.out.println(dtos.add(dto));
+				int i = 0;
+				System.out.println("post postNum");
+				System.out.println(dtos.get(i).getPostNum());
+				i++;
+			}
+			
+			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+	}
 	
 	
 	
