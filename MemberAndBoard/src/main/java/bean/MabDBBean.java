@@ -357,8 +357,50 @@ public class MabDBBean {
 		}
 		return result;
 	}
-	public ArrayList<MabDataPostBean> getArticles() {
+	
+	public ArrayList<MabDataPostBean> getList() {
 		ArrayList<MabDataPostBean> dtos = new ArrayList<MabDataPostBean>();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; 
+		
+		try {
+			con = getConnection();
+			String sql = "select post_id, post_num, post_subject, post_write_date, post_readcount from mab_post order by post_num desc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MabDataPostBean dto = new MabDataPostBean();
+				dto.setPostId(rs.getString("post_id"));
+				dto.setPostNum(rs.getInt("post_num"));
+				dto.setPostSubject(rs.getString("post_subject"));
+				dto.setPostWriteDate(rs.getTimestamp("post_write_date"));
+				dto.setPostReadCount(rs.getInt("post_readcount"));
+				dtos.add(dto);
+			}
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+	}
+	
+	
+	public MabDataPostBean getArticle(int postNum) {
+		
 		MabDataPostBean dto = new MabDataPostBean();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -366,10 +408,11 @@ public class MabDBBean {
 		
 		try {
 			con = getConnection();
-			String sql = "select * from mab_post";
+			String sql = "select * from mab_post where post_num=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, postNum);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				dto.setPostId(rs.getString("post_id"));
 				dto.setPostNum(rs.getInt("post_num"));
 				dto.setPostSubject(rs.getString("post_subject"));
@@ -380,13 +423,48 @@ public class MabDBBean {
 				dto.setPostRefLevel(rs.getInt("post_ref_level"));
 				dto.setPostContent(rs.getString("post_content"));
 				dto.setIp(rs.getString("ip"));
-				System.out.println(dtos.add(dto));
-				int i = 0;
-				System.out.println("post postNum");
-				System.out.println(dtos.get(i).getPostNum());
-				i++;
 			}
-			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
+	public ArrayList<MabDataReplyBean> getReplies(int postNum){
+		
+		ArrayList<MabDataReplyBean> dtos = new ArrayList<MabDataReplyBean>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			System.out.println("posNum = " + postNum);
+			con = getConnection();
+			String sql = "select * from mab_reply where reply_content_id=? order by reply_id asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, postNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MabDataReplyBean dto = new MabDataReplyBean();
+				dto.setReContentId(rs.getInt("reply_content_id"));
+				dto.setReId(rs.getInt("reply_id"));
+				dto.setReContent(rs.getString("reply_content"));
+				dtos.add(dto);
+				System.out.println("contentId= " + rs.getInt("reply_content_id"));
+			}
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
