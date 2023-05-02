@@ -8,9 +8,9 @@
 			<td><input type="text" value="${dto.postSubject}" readonly></td>
 		</tr>
 		<tr>
-			<td><textarea readonly>${dto.postContent}</textarea></td>
+			<td><textarea readonly style="width:520px; height:320px">${dto.postContent}</textarea></td>
 		</tr>
-		<tr>
+		<tr align="right">
 			<td>
 				<input type="submit" value="${btnModify }">
 				<input type="button" value="${btnDelete }">
@@ -24,7 +24,7 @@
 		<c:forEach var="reDto" items="${reDtos }">
 			<tr>
 				<td>
-					<input type="text" value="${reDto.reContent}" readonly>
+					<input type="text" value="${reDto.reContent}" size="30" readonly>
 					<input type="button" value="${btnDelete }">
 				</td>
 			</tr>
@@ -32,11 +32,11 @@
 	</table>
 </form>
 <form name="replyForm" method="post" action="replyPro.net">
-<input type="hidden" name="postNum" value="${param.postNum }">
+<input type="hidden" name="postNum" value="${dto.postNum }">
 	<table>
 		<tr>
 			<td>
-				<input type="text" name="reply">
+				<input type="text" name="reply" size="30">
 				<input type="submit" value="${btnWrite }">
 			</td>
 		</tr>

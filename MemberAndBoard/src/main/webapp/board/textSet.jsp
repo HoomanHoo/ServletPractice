@@ -22,4 +22,6 @@
 <c:set var="btnLogin" value="로그인"/>
 <c:set var="btnLogout" value="로그아웃"/>
 <c:set var="btnBack" value="뒤로가기"/>
-<c:set var="btnModifyApply" value="수정"/>
+<c:set var="btnModify" value="수정"/>
+<c:set var="btnDelete" value="삭제"/>
+<c:set var="btnList" value="글목록으로"/>

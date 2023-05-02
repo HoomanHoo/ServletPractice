@@ -485,6 +485,32 @@ public class MabDBBean {
 		return dtos;
 	}
 	
+	public int insertReply(int contentId, String content) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			String sql = "insert into mab_reply values (?, mab_reply_seq.nextval, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, contentId);
+			pstmt.setString(2, content);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+	
 	
 	
 }//class
