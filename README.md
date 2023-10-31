@@ -1,2 +1,2 @@
-# WebProject
-Java Servlet Base
+# Servlet Project
+Java Servlet Base Web Application
