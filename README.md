@@ -1,2 +1,2 @@
-# Servlet Project
+# Servlet Practice
 Java Servlet Base Web Application
